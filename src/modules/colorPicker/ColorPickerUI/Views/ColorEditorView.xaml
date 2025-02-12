@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:p="clr-namespace:ColorPicker.Properties"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodels="clr-namespace:ColorPicker.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ColorEditorViewModel}"
     x:Name="colorEditorControl"
     mc:Ignorable="d">
     <Grid>
@@ -42,7 +42,7 @@
                 x:Name="HistoryColors"
                 Grid.Column="1"
                 Height="48"
-                Margin="12,4,12,0"
+                Margin="12,4,88,0"
                 VerticalAlignment="Top"
                 VerticalContentAlignment="Top"
                 AutomationProperties.Name="{x:Static p:Resources.Color_History}"
@@ -198,6 +198,12 @@
                     <ui:SymbolIcon FontSize="18" Symbol="Settings20" />
                 </Button.Content>
             </Button>
+            <Button
+                Grid.Column="1"
+                Content="Clear All"
+                Margin="226,4,0,0"
+                VerticalAlignment="Top"
+                Command="{Binding ClearAllColorsCommand}" />
         </Grid>
 
         <Grid Grid.Row="1">
