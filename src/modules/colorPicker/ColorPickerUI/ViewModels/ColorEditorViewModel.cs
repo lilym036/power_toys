@@ -39,6 +39,7 @@ namespace ColorPicker.ViewModels
             OpenSettingsCommand = new RelayCommand(() => OpenSettingsRequested?.Invoke(this, EventArgs.Empty));
 
             RemoveColorsCommand = new RelayCommand(DeleteSelectedColors);
+            ClearAllColorsCommand = new RelayCommand(ClearAllColors);
             ExportColorsGroupedByColorCommand = new RelayCommand(ExportSelectedColorsByColor);
             ExportColorsGroupedByFormatCommand = new RelayCommand(ExportSelectedColorsByFormat);
             SelectedColorChangedCommand = new RelayCommand((newColor) =>
@@ -66,6 +67,8 @@ namespace ColorPicker.ViewModels
         public ICommand OpenSettingsCommand { get; }
 
         public ICommand RemoveColorsCommand { get; }
+
+        public ICommand ClearAllColorsCommand { get; }
 
         public ICommand ExportColorsGroupedByColorCommand { get; }
 
@@ -160,6 +163,11 @@ namespace ColorPicker.ViewModels
 
             SelectedColorIndex = ComputeWhichIndexToSelectAfterDeletion(colorsToRemove.Count + ColorsHistory.Count, indicesToRemove);
             SessionEventHelper.Event.EditorHistoryColorRemoved = true;
+        }
+
+        private void ClearAllColors()
+        {
+            ColorsHistory.Clear();
         }
 
         private void ExportSelectedColorsByColor(object selectedColors)
